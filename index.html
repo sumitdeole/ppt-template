@@ -7,6 +7,44 @@
     <link rel="stylesheet" href="css/styles.css">
     <!-- Chart.js for better charts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    
+    <!-- GitHub Pages Specific Meta Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Professional Presentation Template">
+    
+    <!-- Additional CSS for GitHub Pages compatibility -->
+    <style>
+        /* Force positioning fixes for GitHub Pages */
+        .fullscreen-controls {
+            position: fixed !important;
+            bottom: 30px !important;
+            right: 30px !important;
+            z-index: 1001 !important;
+        }
+        
+        .navigation {
+            position: fixed !important;
+            bottom: 30px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            z-index: 1000 !important;
+        }
+        
+        /* Ensure table colors work on GitHub Pages */
+        .modern-table thead {
+            background: #3498db !important;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%) !important;
+        }
+        
+        /* Force image constraints */
+        .image-placeholder img {
+            max-width: 100% !important;
+            max-height: 350px !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+    </style>
 </head>
 <body>
     <div class="presentation-container">
@@ -95,13 +133,14 @@
             <div class="slide-counter">4/8</div>
             <div class="slide-header">
                 <h2>📊 Power BI Dashboard</h2>
+                <div class="subtitle">Imported from External Analytics Tools</div>
             </div>
             <div class="slide-content">
                 <div class="image-chart-container">
                     <div class="chart-title">Sales Performance Dashboard</div>
                     <div class="image-placeholder">
-                        <!-- Uncomment and replace with your actual image -->
-                        <img src="images/performance-chart.png" alt="Power BI Dashboard" /> 
+                        <!-- Your actual image will go here -->
+                        <img src="images/powerbi-dashboard.png" alt="Power BI Dashboard" style="max-width: 100%; max-height: 350px; width: auto; height: auto; object-fit: contain;" />
                     </div>
                 </div>
                 <div class="content-grid three-col" style="margin-top: 20px;">
@@ -286,17 +325,17 @@
                             <li>✅ Split navigation layout</li>
                             <li>✅ Enhanced charts & tables</li>
                             <li>✅ Image chart support</li>
-                            <li>✅ Mobile-optimized design</li>
+                            <li>✅ GitHub Pages compatible</li>
                         </ul>
                     </div>
                     <div class="content-card priority-medium">
                         <div class="icon">🎉</div>
                         <h3>Next Steps</h3>
                         <ul>
-                            <li>Copy the separated files</li>
-                            <li>Create folder structure</li>
+                            <li>Replace your GitHub files</li>
                             <li>Add your Power BI images</li>
                             <li>Customize with your content</li>
+                            <li>Push changes to deploy</li>
                         </ul>
                     </div>
                 </div>

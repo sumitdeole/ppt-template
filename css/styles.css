@@ -190,7 +190,7 @@ li::before {
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* IMPROVED CHART CONTAINER */
+/* IMPROVED CHART CONTAINER - Fixed for GitHub Pages */
 .chart-container {
     background: white;
     border-radius: 15px;
@@ -200,6 +200,7 @@ li::before {
     position: relative;
     overflow: hidden;
     height: 400px; /* Fixed height to prevent overflow */
+    max-height: 400px; /* Additional constraint for GitHub Pages */
 }
 
 .chart-container::before {
@@ -220,13 +221,14 @@ li::before {
     font-weight: 500;
 }
 
-/* Chart canvas specific styling */
+/* Chart canvas specific styling - Enhanced for GitHub Pages */
 #performanceChart {
     max-height: 300px !important;
     width: 100% !important;
+    height: 300px !important; /* Explicit height for GitHub Pages */
 }
 
-/* IMAGE CHART CONTAINER */
+/* IMAGE CHART CONTAINER - Enhanced for GitHub Pages */
 .image-chart-container {
     background: white;
     border-radius: 15px;
@@ -235,7 +237,7 @@ li::before {
     margin: 20px 0;
     position: relative;
     overflow: hidden;
-    max-height: 500px;
+    max-height: 600px; /* Prevent overflow on GitHub Pages */
 }
 
 .image-chart-container::before {
@@ -250,6 +252,7 @@ li::before {
 
 .image-placeholder {
     min-height: 300px;
+    max-height: 400px; /* Prevent huge images on GitHub Pages */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -257,6 +260,7 @@ li::before {
     border: 2px dashed #bdc3c7;
     border-radius: 10px;
     margin-top: 20px;
+    overflow: hidden; /* Ensure images don't break layout */
 }
 
 .placeholder-content {
@@ -269,14 +273,18 @@ li::before {
     margin-bottom: 20px;
 }
 
+/* FIXED IMAGE SIZING FOR GITHUB PAGES */
 .image-placeholder img {
     max-width: 100%;
-    max-height: 350px;
+    max-height: 350px; /* Restrict height to prevent huge images */
+    width: auto; /* Maintain aspect ratio */
+    height: auto; /* Maintain aspect ratio */
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    object-fit: contain; /* Ensure image fits properly */
 }
 
-/* ENHANCED TABLE STYLES */
+/* ENHANCED TABLE STYLES - Improved for GitHub Pages */
 .table-container {
     background: white;
     border-radius: 15px;
@@ -284,6 +292,7 @@ li::before {
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     margin: 20px 0;
     overflow: hidden;
+    overflow-x: auto; /* Handle mobile overflow */
 }
 
 .modern-table {
@@ -292,10 +301,12 @@ li::before {
     font-size: 1em;
     border-radius: 10px;
     overflow: hidden;
+    min-width: 600px; /* Ensure table doesn't get too cramped */
 }
 
+/* ENHANCED TABLE HEADER - Fixed gradient for GitHub Pages */
 .modern-table thead {
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
     color: white;
 }
 
@@ -304,6 +315,7 @@ li::before {
     text-align: left;
     font-weight: 600;
     font-size: 1.1em;
+    background: inherit; /* Ensure gradient shows */
 }
 
 .modern-table td {
@@ -313,72 +325,76 @@ li::before {
 }
 
 .modern-table tbody tr:hover {
-    background: #f8f9fa;
+    background: #f8f9fa !important; /* Important for GitHub Pages */
     transform: scale(1.01);
 }
 
 .modern-table tbody tr:nth-child(even) {
-    background: #fafafa;
+    background: #fafafa !important; /* Important for GitHub Pages */
 }
 
-/* STATUS INDICATORS */
+/* STATUS INDICATORS - Enhanced for GitHub Pages */
 .status-success {
-    background: #27ae60;
-    color: white;
+    background: #27ae60 !important;
+    color: white !important;
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.9em;
     font-weight: 500;
+    display: inline-block;
 }
 
 .status-warning {
-    background: #f39c12;
-    color: white;
+    background: #f39c12 !important;
+    color: white !important;
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.9em;
     font-weight: 500;
+    display: inline-block;
 }
 
 .status-danger {
-    background: #e74c3c;
-    color: white;
+    background: #e74c3c !important;
+    color: white !important;
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.9em;
     font-weight: 500;
+    display: inline-block;
 }
 
-/* NAVIGATION - SPLIT LAYOUT */
+/* NAVIGATION - SPLIT LAYOUT - Enhanced positioning for GitHub Pages */
 .navigation {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: fixed !important;
+    bottom: 30px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
     display: flex;
     gap: 15px;
     z-index: 1000;
     background: rgba(255,255,255,0.2);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
     padding: 10px 20px;
     border-radius: 25px;
     border: 1px solid rgba(255,255,255,0.3);
 }
 
-/* FULLSCREEN BUTTON - BOTTOM RIGHT */
+/* FULLSCREEN BUTTON - BOTTOM RIGHT - Fixed positioning for GitHub Pages */
 .fullscreen-controls {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 1000;
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    z-index: 1000 !important;
     display: flex;
     gap: 10px;
 }
 
 .nav-btn {
     padding: 12px 25px;
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    color: white;
+    background: linear-gradient(135deg, #3498db, #2980b9) !important;
+    color: white !important;
     border: none;
     border-radius: 25px;
     cursor: pointer;
@@ -412,21 +428,21 @@ li::before {
 }
 
 .nav-btn:disabled {
-    background: #bdc3c7;
+    background: #bdc3c7 !important;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
 }
 
 .fullscreen-btn {
-    padding: 12px;
-    background: linear-gradient(135deg, #27ae60, #2d8659);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 12px !important;
+    background: linear-gradient(135deg, #27ae60, #2d8659) !important;
+    border-radius: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .slide-counter {
@@ -442,19 +458,20 @@ li::before {
     z-index: 20;
 }
 
+/* PRIORITY CLASSES - Enhanced for GitHub Pages */
 .priority-high { 
-    border-left-color: #e74c3c;
-    background: linear-gradient(135deg, #fff5f5, #f8f9fa);
+    border-left-color: #e74c3c !important;
+    background: linear-gradient(135deg, #fff5f5, #f8f9fa) !important;
 }
 
 .priority-medium { 
-    border-left-color: #f39c12;
-    background: linear-gradient(135deg, #fefcf3, #f8f9fa);
+    border-left-color: #f39c12 !important;
+    background: linear-gradient(135deg, #fefcf3, #f8f9fa) !important;
 }
 
 .priority-low { 
-    border-left-color: #27ae60;
-    background: linear-gradient(135deg, #f0fff4, #f8f9fa);
+    border-left-color: #27ae60 !important;
+    background: linear-gradient(135deg, #f0fff4, #f8f9fa) !important;
 }
 
 .timeline {
@@ -529,16 +546,16 @@ li::before {
 }
 
 .presentation-active .navigation {
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.8) !important;
 }
 
 .presentation-active .fullscreen-controls {
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.8) !important;
     border-radius: 15px;
     padding: 10px;
 }
 
-/* Mobile Responsiveness */
+/* Mobile Responsiveness - Enhanced for GitHub Pages */
 @media (max-width: 768px) {
     .slide {
         padding: 30px 20px;
@@ -568,18 +585,20 @@ li::before {
     .navigation {
         flex-wrap: wrap;
         justify-content: center;
-        bottom: 10px;
+        bottom: 10px !important;
         padding: 8px 15px;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
     }
 
     .fullscreen-controls {
-        bottom: 10px;
-        right: 10px;
+        bottom: 10px !important;
+        right: 10px !important;
     }
 
     .fullscreen-btn {
-        width: 45px;
-        height: 45px;
+        width: 45px !important;
+        height: 45px !important;
         font-size: 18px;
     }
 
@@ -596,10 +615,12 @@ li::before {
     .table-container,
     .image-chart-container {
         padding: 20px;
+        max-height: 500px;
     }
 
     .modern-table {
         font-size: 0.9em;
+        min-width: 500px;
     }
 
     .modern-table th,
@@ -609,10 +630,15 @@ li::before {
 
     .image-placeholder {
         min-height: 200px;
+        max-height: 300px;
     }
 
     .placeholder-icon {
         font-size: 3em;
         margin-bottom: 15px;
+    }
+
+    .image-placeholder img {
+        max-height: 250px;
     }
 }
