@@ -2,19 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0">
     <title>🎯 Professional Presentation Template</title>
     <link rel="stylesheet" href="css/styles.css">
     <!-- Chart.js for better charts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     
-    <!-- GitHub Pages Specific Meta Tags -->
+    <!-- Enhanced Mobile Compatibility -->
     <meta name="robots" content="index, follow">
     <meta name="author" content="Professional Presentation Template">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
     
-    <!-- Additional CSS for GitHub Pages compatibility -->
+    <!-- Additional CSS for GitHub Pages and Mobile compatibility -->
     <style>
-        /* Force positioning fixes for GitHub Pages */
+        /* Force positioning fixes for all platforms */
         .fullscreen-controls {
             position: fixed !important;
             bottom: 30px !important;
@@ -30,7 +34,7 @@
             z-index: 1000 !important;
         }
         
-        /* Ensure table colors work on GitHub Pages */
+        /* Ensure table colors work on all platforms */
         .modern-table thead {
             background: #3498db !important;
             background: linear-gradient(135deg, #3498db 0%, #2980b9 100%) !important;
@@ -39,10 +43,60 @@
         /* Force image constraints */
         .image-placeholder img {
             max-width: 100% !important;
-            max-height: 350px !important;
+            max-height: 320px !important;
             width: auto !important;
             height: auto !important;
             object-fit: contain !important;
+        }
+
+        /* Mobile-specific overrides */
+        @media (max-width: 768px) {
+            .navigation {
+                bottom: 15px !important;
+                max-width: 90vw;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+            }
+            
+            .fullscreen-controls {
+                bottom: 15px !important;
+                right: 15px !important;
+            }
+
+            .slide {
+                min-height: calc(100vh - 10px);
+                margin: 5px;
+                padding: 20px 15px;
+            }
+
+            .slide-content {
+                padding-bottom: 120px;
+            }
+        }
+
+        /* Extra small mobile */
+        @media (max-width: 480px) {
+            .navigation {
+                bottom: 10px !important;
+                padding: 6px 12px;
+                gap: 8px;
+                flex-wrap: wrap;
+                max-width: 95vw;
+            }
+            
+            .fullscreen-controls {
+                bottom: 10px !important;
+                right: 10px !important;
+            }
+
+            .nav-btn {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+
+            .slide-content {
+                padding-bottom: 140px;
+            }
         }
     </style>
 </head>
@@ -60,7 +114,7 @@
                     <h3>Fixed Header Design - No More Jumping Titles!</h3>
                     <p>Clean, stable layout with professional navigation controls</p>
                 </div>
-                <div style="text-align: center; margin-top: 40px;">
+                <div style="text-align: center; margin-top: 30px;">
                     <p style="font-size: 1.1em; color: #7f8c8d;">Enhanced with better charts and tables</p>
                     <p style="color: #bdc3c7;">UI best practices implementation</p>
                 </div>
@@ -111,6 +165,11 @@
                         <div class="chart-title">Monthly Performance</div>
                         <canvas id="performanceChart"></canvas>
                     </div>
+                <div class="content-grid two-col">
+                    <div class="chart-container">
+                        <div class="chart-title">Monthly Performance</div>
+                        <canvas id="performanceChart"></canvas>
+                    </div>
                     <div class="content-card">
                         <div class="icon">📊</div>
                         <h3>Key Insights</h3>
@@ -140,10 +199,10 @@
                     <div class="chart-title">Sales Performance Dashboard</div>
                     <div class="image-placeholder">
                         <!-- Your actual image will go here -->
-                        <img src="images/performance-chart.png" alt="Power BI Dashboard" style="max-width: 100%; max-height: 350px; width: auto; height: auto; object-fit: contain;" />
+                        <img src="images/powerbi-dashboard.png" alt="Power BI Dashboard" style="max-width: 100%; max-height: 320px; width: auto; height: auto; object-fit: contain;" />
                     </div>
                 </div>
-                <div class="content-grid three-col" style="margin-top: 20px;">
+                <div class="content-grid three-col" style="margin-top: 15px;">
                     <div class="content-card priority-high">
                         <div class="icon">📈</div>
                         <h3>Revenue Growth</h3>
@@ -213,7 +272,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="content-grid three-col" style="margin-top: 30px;">
+                <div class="content-grid three-col" style="margin-top: 20px;">
                     <div class="content-card priority-high">
                         <div class="icon">⚡</div>
                         <h3>Top Performers</h3>
@@ -325,7 +384,7 @@
                             <li>✅ Split navigation layout</li>
                             <li>✅ Enhanced charts & tables</li>
                             <li>✅ Image chart support</li>
-                            <li>✅ GitHub Pages compatible</li>
+                            <li>✅ Mobile optimized design</li>
                         </ul>
                     </div>
                     <div class="content-card priority-medium">
@@ -335,7 +394,7 @@
                             <li>Replace your GitHub files</li>
                             <li>Add your Power BI images</li>
                             <li>Customize with your content</li>
-                            <li>Push changes to deploy</li>
+                            <li>Test on mobile devices</li>
                         </ul>
                     </div>
                 </div>
