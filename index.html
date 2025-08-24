@@ -49,6 +49,43 @@
             object-fit: contain !important;
         }
 
+        /* TARGETED FIXES FOR SLIDES 3 & 4 ONLY */
+        /* Make the entire page split 70-30, not 50-50 with 70-30 within each */
+        .slide:nth-child(3) .content-grid.two-col,
+        .slide:nth-child(4) .content-grid.two-col {
+            display: flex !important;
+            gap: 20px !important;
+            align-items: flex-start !important;
+        }
+        
+        /* First column: 70% of ENTIRE slide width */
+        .slide:nth-child(3) .chart-container,
+        .slide:nth-child(4) .chart-container {
+            width: 70% !important;
+            flex: 0 0 70% !important;
+            max-width: 70% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+        }
+        
+        /* Second column: 30% of ENTIRE slide width */
+        .slide:nth-child(3) .content-card,
+        .slide:nth-child(4) .content-card {
+            width: 30% !important;
+            flex: 0 0 30% !important;
+            max-width: 30% !important;
+            margin-top: 0 !important;
+            align-self: flex-start !important;
+        }
+        
+        /* Ensure chart titles and content cards start at same baseline */
+        .slide:nth-child(3) .chart-title,
+        .slide:nth-child(4) .chart-title {
+            margin-top: 0 !important;
+            margin-bottom: 10px !important;
+        }
+
         /* Mobile-specific overrides */
         @media (max-width: 768px) {
             .navigation {
@@ -71,6 +108,15 @@
 
             .slide-content {
                 padding-bottom: 120px;
+            }
+            
+            /* Mobile: stack vertically on slides 3 & 4 only */
+            .slide:nth-child(3) .chart-container, 
+            .slide:nth-child(3) .content-card,
+            .slide:nth-child(4) .chart-container,
+            .slide:nth-child(4) .content-card {
+                flex: 1 1 100% !important;
+                max-width: 100% !important;
             }
         }
 
@@ -160,17 +206,12 @@
                 <h2>📈 Interactive Data Visualization</h2>
             </div>
             <div class="slide-content">
-                                <div class="highlight-box">
-                    <strong>Charts now have:</strong> Professional styling, hover effects, and better integration with slide design
-                </div>
-
                 <div class="content-grid two-col">
                     <div class="chart-container">
                         <div class="chart-title">Monthly Performance</div>
                         <canvas id="performanceChart"></canvas>
                     </div>
-            
-                <div class="content-card">
+                    <div class="content-card">
                         <div class="icon">📊</div>
                         <h3>Key Insights</h3>
                         <ul>
@@ -191,28 +232,23 @@
                 <h2>📊 Power BI Dashboard</h2>
             </div>
             <div class="slide-content">
-                <div class="image-chart-container">
-                    <div class="chart-title">Sales Performance Dashboard</div>
-                    <div class="image-placeholder">
-                        <!-- Your actual image will go here -->
-                        <img src="images/performance-chart.png" alt="Power BI Dashboard" style="max-width: 100%; max-height: 320px; width: auto; height: auto; object-fit: contain;" />
+                <div class="content-grid two-col">
+                    <div class="chart-container">
+                        <div class="chart-title">Sales Performance Dashboard</div>
+                        <div class="image-placeholder">
+                            <!-- Your actual image will go here -->
+                            <img src="images/performance-chart.png" alt="Power BI Dashboard" style="max-width: 100%; height: auto; object-fit: contain;" />
+                        </div>
                     </div>
-                </div>
-                <div class="content-grid three-col" style="margin-top: 15px;">
-                    <div class="content-card priority-high">
-                        <div class="icon">📈</div>
-                        <h3>Revenue Growth</h3>
-                        <p>15% increase YoY</p>
-                    </div>
-                    <div class="content-card priority-medium">
-                        <div class="icon">👥</div>
-                        <h3>Customer Base</h3>
-                        <p>2,400 active users</p>
-                    </div>
-                    <div class="content-card priority-low">
-                        <div class="icon">🎯</div>
-                        <h3>Conversion Rate</h3>
-                        <p>8.5% average</p>
+                    <div class="content-card">
+                        <div class="icon">📊</div>
+                        <h3>Key Insights</h3>
+                        <ul>
+                            <li>Revenue Growth: 15% increase YoY</li>
+                            <li>Customer Base: 2,400 active users</li>
+                            <li>Conversion Rate: 8.5% average</li>
+                            <li>Market expansion opportunities</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -410,6 +446,117 @@
         <button class="nav-btn fullscreen-btn" id="fullscreenBtn" onclick="toggleFullscreen()" title="Fullscreen (F11)">📺</button>
     </div>
 
-    <script src="js/script.js"></script>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            
+            const slideInfo = document.getElementById('slideInfo');
+            if (slideInfo) {
+                slideInfo.textContent = `${index + 1} / ${totalSlides}`;
+            }
+
+            updateNavigationButtons();
+            initializeCharts();
+        }
+
+        function changeSlide(direction) {
+            const newSlide = currentSlide + direction;
+            if (newSlide >= 0 && newSlide < totalSlides) {
+                currentSlide = newSlide;
+                showSlide(currentSlide);
+            }
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (prevBtn) prevBtn.disabled = currentSlide === 0;
+            if (nextBtn) nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log('Error attempting to enable full-screen mode:', err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        function togglePresentationMode() {
+            document.body.classList.toggle('presentation-mode');
+        }
+
+        // Initialize charts when slide becomes active
+        function initializeCharts() {
+            if (currentSlide === 2) { // Slide 3 (0-indexed)
+                const ctx = document.getElementById('performanceChart');
+                if (ctx && !ctx.chart) {
+                    ctx.chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            datasets: [{
+                                label: 'Performance',
+                                data: [65, 68, 70, 72, 75, 73, 78, 82, 85, 80, 83, 87],
+                                borderColor: '#667eea',
+                                backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                                tension: 0.4,
+                                fill: true
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    changeSlide(-1);
+                    break;
+                case 'ArrowRight':
+                case ' ':
+                    changeSlide(1);
+                    e.preventDefault();
+                    break;
+                case 'F11':
+                    e.preventDefault();
+                    toggleFullscreen();
+                    break;
+            }
+            
+            if (e.ctrlKey && e.key === 'p') {
+                e.preventDefault();
+                togglePresentationMode();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
 </body>
 </html>
