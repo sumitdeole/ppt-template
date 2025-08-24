@@ -659,12 +659,21 @@ li::before {
         margin: 0;
     }
 
+    /* Modify the existing chart container CSS */
     .chart-container {
-        padding: 15px; /* Reduced mobile padding */
-        height: 300px; /* Reduced mobile height */
-        max-height: 300px;
+        height: 0px;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
     }
 
+    .chart-placeholder {
+        height: 200px; /* Maintain the layout height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+    }
     #performanceChart {
         max-height: 220px !important; /* Reduced mobile chart height */
         height: 220px !important;
